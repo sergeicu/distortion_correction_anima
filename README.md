@@ -1,5 +1,7 @@
 # Example 
 
+Example script + data for how to run [anima's Distortion Correction tool](https://anima.readthedocs.io/en/latest/registration.html).
+
 ```
 # get docker image 
 docker pull sergeicu/anima:latest
