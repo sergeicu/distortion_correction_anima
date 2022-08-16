@@ -11,7 +11,7 @@ echo1=./example_data/echo1.nii.gz
 echo2=./example_data/echo2.nii.gz
 
 # specify phase encode - 0, 1, 2 == x,y,z (see more details below) 
-phase_encode=0
+phase_encode=1
 
 # run docker 
 docker run --rm -v $PWD:/data sergeicu/anima /bin/bash /data/run_anima_distortion_correction.sh $phase_encode $echo1 $echo2 & 
