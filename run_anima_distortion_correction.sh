@@ -12,7 +12,7 @@ run_anima_dc () {
     /anima/animaBMDistortionCorrection -d $phase_encode -f $echo1 -b $echo2 -i Init_Correction.nii.gz -o BM_Corrected_Image.nii.gz -O BM_Correction.nii.gz > log_animaBMDistortionCorrection
     T=BM_Correction.nii.gz
     echo "Running animaApplyDistortionCorrection"
-    /anima/animaApplyDistortionCorrection -f $echo1 -t $T -o ${AP/.nii.gz/_corrected.nii.gz} > log_animaApplyDistortionCorrection
+    /anima/animaApplyDistortionCorrection -f $echo1 -t $T -o ${echo1/.nii.gz/_corrected.nii.gz} > log_animaApplyDistortionCorrection
 }
 
 phase_encode=$1
