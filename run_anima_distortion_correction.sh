@@ -7,12 +7,13 @@ run_anima_dc () {
     echo1=$2
     echo2=$3
     echo "Running animaDistortionCorrection"
-    /anima/animaDistortionCorrection -d $phase_encode -f $echo1 -b $echo2 -o Init_Correction.nii.gz -s 2 > log_animaDistortionCorrection
+    init=${echo1/.nii.gz/}_init_correction.nii.gz
+    /anima/animaDistortionCorrection -d $phase_encode -f $echo1 -b $echo2 -o $init -s 2 > log_animaDistortionCorrection
     echo "Running animaBMDistortionCorrection"
-    /anima/animaBMDistortionCorrection -d $phase_encode -f $echo1 -b $echo2 -i Init_Correction.nii.gz -o BM_Corrected_Image.nii.gz -O BM_Correction.nii.gz > log_animaBMDistortionCorrection
-    T=BM_Correction.nii.gz
-    echo "Running animaApplyDistortionCorrection"
-    /anima/animaApplyDistortionCorrection -f $echo1 -t $T -o ${echo1/.nii.gz/_corrected.nii.gz} > log_animaApplyDistortionCorrection
+    bm_corrected=${echo1/.nii.gz/}_bm_corrected_image.nii.gz
+    bm_correction=${echo1/.nii.gz/}_bm_correction.nii.gz
+    /anima/animaBMDistortionCorrection -d $phase_encode -f $echo1 -b $echo2 -i $init -o $bm_corrected -O $bm_correction > log_animaBMDistortionCorrection
+    /anima/animaApplyDistortionCorrection -f $echo1 -t $bm_correction -o ${echo1/.nii.gz/_corrected.nii.gz} > log_animaApplyDistortionCorrection
 }
 
 phase_encode=$1

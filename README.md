@@ -33,3 +33,7 @@ If `InPlanePhaseEncodingDirectionDICOM` is `COL`, then `phase_encode` is `1`, el
 ### Using dicomfile 
 
 Alternatively, check `InPlanePhaseEncoding` field in the correct dicom file from which the data was generated, and apply the same logic as in the json example above. 
+
+
+## Warning 
+$echo1 and $echo2 must be 3D files. If they are 4D files (with multiple repetitions of each echo) - split them like this via 'FSL' tool - `fslsplit $echo1 ${echo1/.nii.gz/_} -t` 
